@@ -1,8 +1,12 @@
 use std::fmt::Display;
 
+/// 车贷
 struct CarLoan {
+    /// 贷款总金额
     money: f64,
+    /// 贷款年数
     year: u32,
+    /// 年利率
     interest_rate_per_year: f64,
 }
 
@@ -64,10 +68,14 @@ mod tests {
     fn it_works() {
         let car_loan = CarLoan::new(100000f64, 3, 0.023);
         println!("贷款总期数，也就是贷多少个月={}", car_loan.month());
-        println!("本金， 也就是每月除了利息外需要还的钱数={}", car_loan.principal_per_month());
+        println!(
+            "本金， 也就是每月除了利息外需要还的钱数={}",
+            car_loan.principal_per_month()
+        );
         println!("每月的利息={}", car_loan.interest_per_month());
         println!("每年的利息={}", car_loan.interest_per_year());
         println!("总利息={}", car_loan.total_interest());
         println!("月供={}", car_loan.total_money_per_month());
+        assert_eq!(car_loan.total_money_per_month() as u32, 2969)
     }
 }
